@@ -20,7 +20,10 @@ def GetRandomDingzhen(dingzhenJSON: dict) -> str:
 
 @sv.on_fullmatch("随机丁真")
 async def SentRandomDingzhen(bot, ev: CQEvent):
-    # 获取json字典
-    dingzhenJson = requests.get(randomUrl).json()[0]
-    # 发送消息
-    await bot.send(ev, GetRandomDingzhen(dingzhenJson))
+    try:
+        # 获取json字典
+        dingzhenJson = requests.get(randomUrl).json()[0]
+        # 发送消息
+        await bot.send(ev, GetRandomDingzhen(dingzhenJson))
+    except:
+        await bot.send(ev, "发送失败…")
